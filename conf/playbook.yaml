@@ -1,0 +1,18 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: install essential packages
+      apt: pkg={{item}} state=latest
+      with_items:
+        - build-essential
+        - git
+        - ruby
+        - ruby-dev
+        - rubygems
+
+    - name: Install Jekyll and Bundler
+      gem: name={{item}} state=latest user_install=no
+      with_items:
+        - jekyll
+        - bundler
